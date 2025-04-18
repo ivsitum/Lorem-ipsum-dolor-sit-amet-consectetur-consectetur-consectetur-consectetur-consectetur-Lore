@@ -5,10 +5,15 @@ node_js:
 os: linux
 dist: focal
 
-install: skip  # No installation step if not required
+env:
+  global:
+    - PLAN_ID=999999  # invalid plan_id
+
+install: skip
 
 script:
   - echo "Running tests..."
+  - echo "Using PLAN_ID=$PLAN_ID"
 
 before_deploy:
   - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
